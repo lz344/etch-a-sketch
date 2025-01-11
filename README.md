@@ -1,1 +1,1 @@
-# etch-a-sketch
+Um projeto para testar meus conhecimentos sobre DOM e Flexbox
