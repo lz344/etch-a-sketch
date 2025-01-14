@@ -3,3 +3,23 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+:root{
+    --square-size: 0;
+}
+
+
+#container-eas{
+    width: 960px;
+    height: 960px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+
+
+}
+
+.square {
+    width: var(--square-size);
+    height: var(--square-size);
+}
