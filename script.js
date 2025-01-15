@@ -19,6 +19,18 @@ function createSquares(input) {
   input.value = "";
 }
 
+function deleteSquares(squares) {
+  squares.forEach((square) => {
+    square.remove();
+  });
+}
+
 submitButton.addEventListener("click", () => {
-  createSquares(textFieldUser);
+  let createdSquares = document.querySelectorAll(".square");
+  if (createdSquares.length > 0) {
+    deleteSquares(createdSquares);
+    createSquares(textFieldUser);
+  } else {
+    createSquares(textFieldUser);
+  }
 });
