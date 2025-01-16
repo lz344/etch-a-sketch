@@ -13,24 +13,21 @@ function createSquares(input) {
   for (let i = 0; i < grid; i++) {
     const square = document.createElement("div");
     square.classList.add("square");
+    square.addEventListener("mouseenter", () => {
+      console.log("passou por aqui!");
+    });
     document.querySelector("#container-eas").appendChild(square);
   }
 
   input.value = "";
 }
 
-function deleteSquares(squares) {
-  squares.forEach((square) => {
-    square.remove();
-  });
+function deleteSquares() {
+  const container = document.querySelector("#container-eas");
+  container.innerHTML = "";
 }
 
 submitButton.addEventListener("click", () => {
-  let createdSquares = document.querySelectorAll(".square");
-  if (createdSquares.length > 0) {
-    deleteSquares(createdSquares);
-    createSquares(textFieldUser);
-  } else {
-    createSquares(textFieldUser);
-  }
+  deleteSquares();
+  createSquares(textFieldUser);
 });
