@@ -22,4 +22,5 @@
 .square {
     width: var(--square-size);
     height: var(--square-size);
+    opacity: 0.1;
 }
