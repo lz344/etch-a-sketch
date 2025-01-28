@@ -67,6 +67,10 @@ function colorOpacity(element) {
 }
 
 submitButton.addEventListener("click", () => {
-  deleteSquares();
-  createSquares(textFieldUser, randomColor, colorOpacity);
+  if (textFieldUser.value <= 0 || textFieldUser.value > 100) {
+    alert("O tamanho do grid deve ser maior que 0 e menor que 100!");
+  } else {
+    deleteSquares();
+    createSquares(textFieldUser, randomColor, colorOpacity);
+  }
 });
