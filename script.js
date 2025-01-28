@@ -1,7 +1,7 @@
 const textFieldUser = document.querySelector("#how-many-squares");
 const submitButton = document.querySelector("#button-calc-squares");
 
-function createSquares(input) {
+function createSquares(input, color, colorItensity) {
   let userInput = input.value;
   let grid = userInput * userInput;
   let squareSize = 960 / userInput;
@@ -15,38 +15,11 @@ function createSquares(input) {
     square.classList.add("square");
 
     square.addEventListener("mouseenter", function () {
-      const colorHex = [
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
-        "A",
-        "B",
-        "C",
-        "D",
-        "E",
-        "F",
-      ];
-      if (this.style.backgroundColor === "") {
-        let backgroundColor = "";
-        for (let i = 0; i < 6; i++) {
-          let aleatory = Math.floor(Math.random() * 16);
-          backgroundColor += colorHex[aleatory];
-        }
-        this.style.backgroundColor = `#${backgroundColor}`;
+      if (!this.style.backgroundColor) {
+        this.style.backgroundColor = color();
       } else {
-        if (this.style.opacity === "") {
-          this.style.opacity = 0.2;
-        } else {
-          if (+this.style.opacity <= 1.1) {
-            this.style.opacity = `${+this.style.opacity + 0.1}`;
-          }
+        if (+this.style.opacity < 0.9) {
+          this.style.opacity = colorItensity(+this.style.opacity);
         }
       }
     });
@@ -62,7 +35,38 @@ function deleteSquares() {
   container.innerHTML = "";
 }
 
+function randomColor() {
+  const colorHex = [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+  ];
+  let backgroundColor = "#";
+  for (let i = 0; i < 6; i++) {
+    let aleatory = Math.floor(Math.random() * 16);
+    backgroundColor += colorHex[aleatory];
+  }
+  return backgroundColor;
+}
+
+function colorOpacity(element) {
+  return element + 0.1;
+}
+
 submitButton.addEventListener("click", () => {
   deleteSquares();
-  createSquares(textFieldUser);
+  createSquares(textFieldUser, randomColor, colorOpacity);
 });
